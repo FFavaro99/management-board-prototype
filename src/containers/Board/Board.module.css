@@ -1,0 +1,9 @@
+
+.board {
+    display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+    width: 80%;
+    box-sizing: border-box;
+    margin: 5px;
+}
