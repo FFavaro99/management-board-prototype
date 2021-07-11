@@ -16,7 +16,7 @@ const AddBoard = ({addBoard}) => {
                     {
                         const title = nameInput.current.value;
                         nameInput.current.value = null;
-                        return addBoard(title);
+                        if (title) return addBoard(title);
                     }}
                 >Add a new board</button>
         </Fragment>

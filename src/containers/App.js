@@ -18,7 +18,8 @@ function App() {
     const boards = ls.getItem('mbpBoardsData');
     //2. if there are, save them in state.
     if (boards) {
-      setBoards(boards);
+      console.log("retrieved from ls: ", boards);
+      setBoards(JSON.parse(boards));
     }
   }, []);
 
@@ -33,6 +34,7 @@ function App() {
       return board;
     });
     setBoards(newBoards);
+    ls.setItem('mbpBoardsData', JSON.stringify(newBoards));
   }
 
   const addBoard = boardTitle => {
@@ -43,6 +45,7 @@ function App() {
       lanes: []
     });
     setBoards(newBoards);
+    ls.setItem('mbpBoardsData', JSON.stringify(newBoards));
   }
 
   return (
