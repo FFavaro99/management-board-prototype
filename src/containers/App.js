@@ -21,11 +21,13 @@ let testBoards = [
   },
   {
     id: 1,
-    title: 'second board'
+    title: 'second board',
+    lanes: []
   },
   {
     id: 2,
-    title: 'third board'
+    title: 'third board',
+    lanes: []
   }
 ];
 const ls = window.localStorage;
@@ -47,11 +49,24 @@ function App() {
     }
   }, []);
 
+  const addLane = (boardId) => {
+    let laneId = Math.floor(Math.random() * 1000 + Math.random() * 100 + Math.random() * 10);
+    let currentBoards = [...boards];
+    let newBoards = currentBoards.map(board => {
+      if (+board.id === +boardId) {
+        board.lanes.push({title: "New Lane", id: laneId});
+        return board;
+      }
+      return board;
+    });
+    setBoards(newBoards);
+  }
+
   return (
     <Router>
       <Switch>
         <Route exact path='/' render={()=>{return <Layout boardIdParam={false} boards={boards}/>}}/>
-        <Route exact path='/:boardId' render={()=>{return <Layout boardIdParam boards={boards}/>}}/>
+        <Route exact path='/:boardId' render={()=>{return <Layout boardIdParam boards={boards} addLane={addLane}/>}}/>
       </Switch>
     </Router>
   );

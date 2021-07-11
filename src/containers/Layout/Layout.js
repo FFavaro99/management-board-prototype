@@ -6,7 +6,7 @@ import {BrowserRouter as Router, Route, Switch, useParams} from 'react-router-do
 
 const Board = lazy(()=>import('../Board/Board'));
 
-const Layout = ({boardIdParam, boards}) => {
+const Layout = ({boardIdParam, boards, addLane}) => {
 
     const [currentBoard, setCurrentBoard] = useState(null);
     const [boardIdState, setBoardIdState] = useState(-Infinity);
@@ -25,7 +25,7 @@ const Layout = ({boardIdParam, boards}) => {
                 setCurrentBoard(currentBoard);
             }
         }
-      },[boardId, boardIdState]);
+      },[boardId, boardIdState, boards]);
 
     return (
         <Fragment>
@@ -34,7 +34,7 @@ const Layout = ({boardIdParam, boards}) => {
                 <BoardsNav boards={boards} currentBoard={currentBoard}/>
                 <main>
                   <Suspense fallback={<div>Loading...</div>}>
-                    { currentBoard ? <Board currentBoard={currentBoard}/> : null }
+                    { currentBoard ? <Board currentBoard={currentBoard} addLane={addLane}/> : null }
                   </Suspense>
                 </main>
               </div>

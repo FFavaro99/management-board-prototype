@@ -3,7 +3,9 @@
     display: flex;
     justify-content: flex-start;
     align-content: flex-start;
-    width: 80%;
+    width: 78.2vw;
+    min-height: 90vh;
     box-sizing: border-box;
     margin: 5px;
+    overflow: scroll;
 }
