@@ -2,11 +2,11 @@ import {Fragment, lazy, Suspense, useEffect, useState} from 'react';
 import Header from '../../components/Header/Header';
 import BoardsNav from '../../components/BoardsNav/BoardsNav';
 import styles from './Layout.module.css';
-import {BrowserRouter as Router, Route, Switch, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 
 const Board = lazy(()=>import('../Board/Board'));
 
-const Layout = ({boardIdParam, boards, addLane}) => {
+const Layout = ({boardIdParam, boards, addLane, addBoard}) => {
 
     const [currentBoard, setCurrentBoard] = useState(null);
     const [boardIdState, setBoardIdState] = useState(-Infinity);
@@ -25,13 +25,13 @@ const Layout = ({boardIdParam, boards, addLane}) => {
                 setCurrentBoard(currentBoard);
             }
         }
-      },[boardId, boardIdState, boards]);
+      },[boardId, boardIdState, boards, boardIdParam]);
 
     return (
         <Fragment>
             { currentBoard ? <Header title={currentBoard.title}/> : <Header/>}
             <div className={styles.wrapper}>
-                <BoardsNav boards={boards} currentBoard={currentBoard}/>
+                <BoardsNav boards={boards} currentBoard={currentBoard} addBoard={addBoard}/>
                 <main>
                   <Suspense fallback={<div>Loading...</div>}>
                     { currentBoard ? <Board currentBoard={currentBoard} addLane={addLane}/> : null }

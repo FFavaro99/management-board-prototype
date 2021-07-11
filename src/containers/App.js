@@ -6,30 +6,6 @@ import {useEffect, useState} from 'react';
 // Boards are stored in App: Boards: [Board { title: string, id: number }]
 // Lanes and tickets are stored in Board: Lane { title: string, id: number } Ticket { title: string, description: string, id: number }
 
-let testBoards = [
-  {
-    id: 0,
-    title: 'first board',
-    lanes: [
-      {
-        title: 'first lane',
-        id: 0,
-        tickets: [
-        ]
-    }
-    ]
-  },
-  {
-    id: 1,
-    title: 'second board',
-    lanes: []
-  },
-  {
-    id: 2,
-    title: 'third board',
-    lanes: []
-  }
-];
 const ls = window.localStorage;
 
 function App() {
@@ -44,13 +20,10 @@ function App() {
     if (boards) {
       setBoards(boards);
     }
-    else {
-      setBoards(testBoards);
-    }
   }, []);
 
   const addLane = (boardId) => {
-    let laneId = Math.floor(Math.random() * 1000 + Math.random() * 100 + Math.random() * 10);
+    let laneId = Math.floor(Math.random()*100000000 + Math.random()*10000000 + Math.random()*1000000+ Math.random()*100000);
     let currentBoards = [...boards];
     let newBoards = currentBoards.map(board => {
       if (+board.id === +boardId) {
@@ -62,11 +35,21 @@ function App() {
     setBoards(newBoards);
   }
 
+  const addBoard = boardTitle => {
+    let newBoards = [...boards];
+    newBoards.push({
+      id: Math.floor(Math.random()*100000000 + Math.random()*10000000 + Math.random()*1000000+ Math.random()*10000),
+      title: boardTitle,
+      lanes: []
+    });
+    setBoards(newBoards);
+  }
+
   return (
     <Router>
       <Switch>
-        <Route exact path='/' render={()=>{return <Layout boardIdParam={false} boards={boards}/>}}/>
-        <Route exact path='/:boardId' render={()=>{return <Layout boardIdParam boards={boards} addLane={addLane}/>}}/>
+        <Route exact path='/' render={()=>{return <Layout boardIdParam={false} boards={boards} addBoard={addBoard}/>}}/>
+        <Route exact path='/:boardId' render={()=>{return <Layout boardIdParam boards={boards} addLane={addLane} addBoard={addBoard}/>}}/>
       </Switch>
     </Router>
   );

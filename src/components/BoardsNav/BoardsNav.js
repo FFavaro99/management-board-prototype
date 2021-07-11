@@ -1,25 +1,26 @@
 import styles from './BoardsNav.module.css';
 import { Link } from 'react-router-dom';
+import AddBoard from '../AddBoard/AddBoard';
 
-const BoardsNav = ({boards, currentBoard}) => {
+const BoardsNav = ({boards, currentBoard, addBoard}) => {
 
     let content;
     if (boards) {
         content = boards.map(board => {
             const linkTarget = {
                 pathname: `/${board.id}`,
-                key: Math.random(),
+                key: board.id,
                 state: {
                   applied: true
                 }
               };
             if (currentBoard && +board.id === +currentBoard.id){
                 return (
-                    <li className={`${styles.link} ${styles.activeLink}`}><Link to={linkTarget}>{board.title}</Link></li>
+                    <li key={board.id} className={`${styles.link} ${styles.activeLink}`}><Link to={linkTarget}>{board.title}</Link></li>
                 );
             }
             return (
-                <li className={styles.link}><Link to={linkTarget}>{board.title}</Link></li>
+                <li key={board.id} className={styles.link}><Link to={linkTarget}>{board.title}</Link></li>
             );
         });
     }
@@ -30,6 +31,7 @@ const BoardsNav = ({boards, currentBoard}) => {
             <ul>
                 {content}
             </ul>
+            <AddBoard addBoard={addBoard}/>
         </nav>
     )
 }

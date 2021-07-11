@@ -1,22 +1,25 @@
-.addButton {
-    display:flex;
-    justify-content: center;
-    align-items: center;
+.addBoardBtn {
+    width: 80%;
     background-color: rgb(0, 194, 65);
     color: #fff;
     font: inherit;
     border: none;
-    font-size: 1;
     cursor: pointer;
     height: 3rem;
-    margin-left: 1rem;
     margin-top: 5px;
     box-shadow: rgb(41, 61, 48) 2px 2px 5px;
-    min-width: 9rem;
 }
 
-.addButton:hover {
+.addBoardBtn:hover {
     color:rgb(0, 161, 54);
     background-color: #fff;
     border: 2px solid rgb(0, 161, 54);
+}
+
+.input {
+    width: 75%;
+    height: 1.5rem;
+    font: inherit;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
 }
