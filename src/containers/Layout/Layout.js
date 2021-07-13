@@ -6,7 +6,7 @@ import {useParams} from 'react-router-dom';
 
 const Board = lazy(()=>import('../Board/Board'));
 
-const Layout = ({boardIdParam, boards, addLane, addBoard}) => {
+const Layout = ({boardIdParam, boards, addLane, addBoard, addTicket}) => {
 
     const [currentBoard, setCurrentBoard] = useState(null);
     const [boardIdState, setBoardIdState] = useState(-Infinity);
@@ -34,7 +34,7 @@ const Layout = ({boardIdParam, boards, addLane, addBoard}) => {
                 <BoardsNav boards={boards} currentBoard={currentBoard} addBoard={addBoard}/>
                 <main>
                   <Suspense fallback={<div>Loading...</div>}>
-                    { currentBoard ? <Board currentBoard={currentBoard} addLane={addLane}/> : null }
+                    { currentBoard ? <Board currentBoard={currentBoard} addLane={addLane} addTicket={addTicket}/> : null }
                   </Suspense>
                 </main>
               </div>

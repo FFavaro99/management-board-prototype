@@ -7,8 +7,10 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    padding: 0;
+    /* align-items: center; */
     justify-content: flex-start;
+    box-shadow:#888 2px 2px 5px;
 }
 
 .title {
@@ -32,6 +34,20 @@
     font-size: 1rem;
     padding: 0.5rem 0.5rem;
     margin: 0px;
+}
+
+.ticketsList {
+    list-style: none;
+    width: 90%;
+    margin: auto;
+    padding: 0;
+}
+
+.ticketsList li {
+    width: 100%;
+    box-shadow: #555 2px 2px 5px;
+    border-radius: .5rem;
+    margin: 0.5rem 0;
 }
 
 
